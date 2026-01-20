@@ -1,0 +1,25 @@
+{
+  "enabled_checks": [
+    "RG-SCHEMA-001",
+    "RG-INVARIANT-002",
+    "RG-REFERENCE-003",
+    "RG-DAG-004",
+    "RG-WEAK-FORMAT-005"
+  ],
+  "check_section_dependencies": {
+    "RG-SCHEMA-001": ["*"],
+    "RG-INVARIANT-002": ["invariants", "assumptions"],
+    "RG-REFERENCE-003": ["api_contracts", "data_schemas"],
+    "RG-DAG-004": ["build_dependencies"],
+    "RG-WEAK-FORMAT-005": ["env_vars", "api_contracts", "persistence_model"]
+  },
+  "max_errors": 5,
+  "retry_budget": 1,
+  "contradiction_rule_version": "v1",
+  "weak_format_ruleset_id": "v2",
+  "weak_format_allowlists": {
+    "url_fields": ["api_base_url", "db_connection_string"],
+    "module_path_fields": ["backend_entrypoint"],
+    "package_name_fields": ["runtime_package"]
+  }
+}

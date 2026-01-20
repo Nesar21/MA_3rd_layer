@@ -1,0 +1,30 @@
+{
+  "project_name": "Doomed Project",
+  "schema_version": "WRONG_HASH_ON_PURPOSE",
+  "invariants": {
+    "api_contracts": { "v1": "spec" },
+    "data_schemas": { "db": "schema" },
+    "env_vars": { 
+      "ENV": "prod",
+      "api_base_url": "ftp://insecure-site.com"
+    },
+    "build_dependencies": { 
+      "all": "true",
+      "backend_entrypoint": "invalid-@-chars",
+      "runtime_package": "good-package"
+    },
+    "auth_model": {}, 
+    "persistence_model": "valid"
+  },
+  "assumptions": {
+    "authentication": "x",
+    "authorization": "x",
+    "deployment_scope": "x",
+    "data_retention": "x",
+    "scaling_model": "x"
+  },
+  "build_dag": {
+    "service_a": ["service_b"],
+    "service_b": ["service_a"]
+  }
+}
