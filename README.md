@@ -289,72 +289,70 @@ Retry is **surgical**, not blind.
 Failure classification is informational only.
 It does not alter retry rules or admissibility criteria.
 
-Freeze Semantics
-Preconditions
+---
+
+## Freeze Semantics
+
+### Preconditions
 
 All must be true:
 
-All enabled checks PASS
+- All enabled checks **PASS**
+- Governance hash recorded
+- `PLAN_FROZEN` ledger entry written atomically
+- Retry budget is irrelevant on **PASS**
 
-Governance hash recorded
+### Guarantees
 
-PLAN_FROZEN ledger entry written atomically
+- Plan becomes immutable
+- Execution authority granted
+- Resume eligibility enabled
 
-Retry budget is irrelevant on PASS.
+---
 
-Guarantees
+## Ledger Interaction (Limited)
 
-Plan becomes immutable
+Governance may read the Progress Ledger **only** to:
 
-Execution authority granted
+- Determine retry count
+- Validate resume eligibility
 
-Resume eligibility enabled
-
-Ledger Interaction (Limited)
-
-Governance may read the Progress Ledger only to:
-
-Determine retry count
-
-Validate resume eligibility
-
-Governance decisions are otherwise independent of ledger history.
-
+Governance decisions are otherwise independent of ledger history.  
 This preserves replay determinism.
 
-Known & Owned Failure Modes
+---
+
+## Known & Owned Failure Modes
 
 Governance intentionally allows:
 
-Vacuous but complete plans
-
-Semantic contradictions across predicates
-
-Structurally admissible but useless artifacts
+- Vacuous but complete plans
+- Semantic contradictions across predicates
+- Structurally admissible but useless artifacts
 
 These failures are deferred to:
 
-Validation
-
-Deterministic Failure Replay (DFR)
+- Validation
+- Deterministic Failure Replay (DFR)
 
 This is by design.
 
-What Governance Refuses To Do
+---
 
-Semantic reasoning
+## What Governance Refuses To Do
 
-Intent validation
+- Semantic reasoning
+- Intent validation
+- Auto-fixing
+- Adaptive behavior
+- Planner trust
+- Execution safety guarantees
 
-Auto-fixing
+---
 
-Adaptive behavior
+## Project Structure
 
-Planner trust
-
-Execution safety guarantees
-
-Project Structure
+```text
 MA_3rd_layer/
 ├── src/
 │   └── governance/
@@ -375,27 +373,39 @@ MA_3rd_layer/
 ├── run_governance.py
 ├── requirements.txt
 └── README.md
-Test Philosophy
+```
 
-Layer 3 is verified via failure proofs, not unit tests.
+---
 
-Safety is proven only when invalid input is rejected.
+## Test Philosophy
 
-If fail_dag_cycle.json passes, the system is broken.
+Layer 3 is verified via **failure proofs**, not unit tests.
 
-Exit Codes
-Code	Meaning
-0	ADMISSIBLE (Authority Granted)
-1	REJECTED (Authority Denied)
-Final Statement
+Safety is proven only when **invalid input is rejected**.
 
-Governance enforces admissibility, not usefulness; authority, not correctness.
+If `fail_dag_cycle.json` passes, **the system is broken**.
 
-A reviewer may disagree with the philosophy.
+---
+
+## Exit Codes
+
+| Code | Meaning |
+|------|---------|
+| 0    | ADMISSIBLE (Authority Granted) |
+| 1    | REJECTED (Authority Denied) |
+
+---
+
+## Final Statement
+
+Governance enforces **admissibility**, not usefulness; **authority**, not correctness.
+
+A reviewer may disagree with the philosophy.  
 They cannot break the logic.
 
-License
+---
 
-MIT License
+## License
+
+MIT License  
 © 2026 Nesar
-
