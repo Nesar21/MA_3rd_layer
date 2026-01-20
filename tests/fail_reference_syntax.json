@@ -1,0 +1,20 @@
+{
+  "project_name": "Marathon Test Run",
+  "schema_version": "89a6035eeb0fc3e7e71a62fc6b1621a77f09483ed7b84b988ac7ac7aed0f5a60",
+  "invariants": {
+    "api_contracts": { "user@service": "openapi.yaml" },
+    "data_schemas": { "users": "users.sql" },
+    "env_vars": { "DB_HOST": "Production DB", "api_base_url": "https://api.marathon.com" },
+    "build_dependencies": { "backend": "python 3.9" },
+    "auth_model": { "type": "oauth2" },
+    "persistence_model": { "primary": "postgres" }
+  },
+  "assumptions": {
+    "authentication": "Auth0 handled externally",
+    "authorization": "RBAC via JWT",
+    "deployment_scope": "AWS Lambda",
+    "data_retention": "7 years",
+    "scaling_model": "Horizontal auto-scale"
+  },
+  "build_dag": { "backend": [] }
+}
