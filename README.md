@@ -354,7 +354,9 @@ This is by design.
 
 ```text
 MA_3rd_layer/
+├── .venv/
 ├── src/
+│   ├── __init__.py
 │   └── governance/
 │       ├── __init__.py
 │       ├── engine.py
@@ -364,6 +366,7 @@ MA_3rd_layer/
 │       └── manifest.json
 ├── tests/
 │   ├── valid_plan.json
+│   ├── invalid_plan.json
 │   ├── fail_schema_version.json
 │   ├── fail_empty_invariant.json
 │   ├── fail_reference_syntax.json
@@ -372,6 +375,7 @@ MA_3rd_layer/
 │   └── get_hash.py
 ├── run_governance.py
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
